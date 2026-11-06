@@ -1,0 +1,21 @@
+# IDE files.
+/**/.idea/
+/**/.vscode/
+
+# Distribution/build files.
+/**/node_modules/
+/**/.next/
+/**/dist/
+/**/build/
+/**/out/
+/**/.vercel/
+/**/.cloudflare/
+/**/.vinext/
+/**/*.tsbuildinfo
+
+# Environment variables.
+!/.env.example
+/**/*.env*
+
+# Operating system files.
+/**/.DS_Store

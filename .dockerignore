@@ -1,0 +1,40 @@
+# IDE files.
+/**/.idea/
+/**/.vscode/
+/**/.vs/
+/**/.cursor/
+# AI files.
+/**/.claude/
+/**/.codex/
+/**/.ai/
+
+# Dependencies & distribution files.
+/**/node_modules/
+/**/.next/
+/**/dist/
+/**/build/
+/**/out/
+/**/.vercel/
+/**/.cloudflare/
+/**/.vinext/
+/**/*.tsbuildinfo
+
+# Environment variables.
+/**/*.env*
+
+# Files used only at development stage.
+/.prettierrc.json
+/.prettierignore
+/.lefthook/
+/.github/
+/.git/
+/.next/
+/tests/
+/README.md
+
+# Cloudflare deployment configuration is not used by the standalone container.
+/cloudflare.config.ts
+
+# Operating system's files.
+/**/.DS_Store
+/**/*.ini

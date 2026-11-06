@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-issue-config.json
+# As because it's a simple school project, I do not accept issues from other people.
+---
+blank_issues_enabled: false

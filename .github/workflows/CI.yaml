@@ -1,0 +1,83 @@
+# Validate the Next.js frontend and its production image.
+---
+name: Continuous Integration. (Frontend)
+on:
+    workflow_dispatch:
+    push:
+        branches-ignore:
+            - "*-disabled"
+    pull_request:
+        branches-ignore:
+            - "*-disabled"
+concurrency:
+    group: ci-workflow
+    cancel-in-progress: true
+permissions:
+    contents: read
+defaults:
+    run:
+        shell: bash
+jobs:
+    validate:
+        name: Validate frontend application.
+        runs-on: ubuntu-latest
+        env:
+            NEXT_TELEMETRY_DISABLED: "1"
+            ## Information about the application's endpoint.
+            ## App does not contain any more endpoints, as it's a static website.
+            NEXT_PUBLIC_WEBSITE_ENDPOINT_URL: https://chemistry.oliverperzyk.com
+        steps:
+            - name: Checkout repository.
+              uses: actions/checkout@v7
+            - name: Set up Bun.
+              uses: oven-sh/setup-bun@v2
+              with:
+                  bun-version: latest
+            - name: Cache Bun dependencies.
+              uses: actions/cache@v6
+              with:
+                  path: ~/.bun/install/cache
+                  key: ${{ runner.os }}-bun-${{ hashFiles('bun.lock') }}
+                  restore-keys: |
+                      ${{ runner.os }}-bun-
+            - name: Install dependencies.
+              run: bun install --frozen-lockfile
+            - name: Initialize test environment.
+              env:
+                  NODE_ENV: test
+              run: bun run test:init
+            - name: Check formatting.
+              run: bun run format:check
+            - name: Lint repository.
+              run: bun run lint
+            - name: Check TypeScript types.
+              run: bun run typecheck
+            - name: Lint Dockerfile.
+              uses: hadolint/hadolint-action@v3.5.0
+              with:
+                  dockerfile: ./Dockerfile
+                  config: ./.hadolint.yaml
+            - name: Validate Docker Compose configuration.
+              run: docker compose config --quiet
+            - name: Run tests.
+              env:
+                  NODE_ENV: test
+              run: bun run test
+            - name: Cache Next.js build.
+              uses: actions/cache@v6
+              with:
+                  path: .next/cache
+                  key: ${{ runner.os }}-${{ runner.arch }}-nextjs-v1-${{ hashFiles('bun.lock', 'package.json', 'next.config.ts', 'tsconfig.json', 'postcss.config.*') }}-${{ hashFiles('src/**', 'public/**') }}
+                  restore-keys: |
+                      ${{ runner.os }}-${{ runner.arch }}-nextjs-v1-${{ hashFiles('bun.lock', 'package.json', 'next.config.ts', 'tsconfig.json', 'postcss.config.*') }}-
+            - name: Build application.
+              env:
+                  NODE_ENV: production
+              run: bun run build:vinext
+            - name: Build production-ready image using Docker.
+              env:
+                  NEXT_PUBLIC_WEBSITE_ENDPOINT_URL: https://chemistry.oliverperzyk.com
+              run: |
+                  docker build \
+                      --build-arg NEXT_PUBLIC_WEBSITE_ENDPOINT_URL \
+                      --tag chemistry-infographic:ci .

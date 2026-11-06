@@ -1,0 +1,41 @@
+# Deploys the application to public via Cloudflare workers.
+---
+name: Deploy to Cloudflare Workers.
+on:
+    workflow_dispatch:
+    push:
+        tags: ["**"]
+permissions:
+    contents: read
+concurrency:
+    group: cloudflare-production-deployment
+    cancel-in-progress: false
+defaults:
+    run:
+        shell: bash
+jobs:
+    deploy:
+        name: Deploy application.
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository.
+              uses: actions/checkout@v7
+            - name: Set up Bun.
+              uses: oven-sh/setup-bun@v2
+              with:
+                  bun-version: latest
+            - name: Install dependencies.
+              env:
+                  LEFTHOOK: "0"
+              run: bun install --frozen-lockfile
+            - name: Check Cloudflare credentials.
+              env:
+                  CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+                  CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+              run: bash .github/scripts/CheckCloudflareCredentials.sh
+            - name: Build and deploy application.
+              env:
+                  CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+                  CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+                  NEXT_PUBLIC_WEBSITE_ENDPOINT_URL: https://chemistry.oliverperzyk.com
+              run: bun run deploy:vinext

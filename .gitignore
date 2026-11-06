@@ -1,0 +1,25 @@
+# IDE files.
+/**/.idea/
+/**/.vscode/
+
+# Distribution/build files.
+/**/node_modules/
+/**/.next/
+/**/dist/
+/**/build/
+/**/out/
+/**/.vercel/
+/**/.cloudflare/
+/**/.vinext/
+/**/*.tsbuildinfo
+
+# Additional TypeScript files.
+# Shouldn't be edited manually.
+/next-env.d.ts
+
+# Environment variables.
+/**/*.env*
+!/.env.example
+
+# Operating system files.
+/**/.DS_Store

@@ -1,0 +1,25 @@
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="36"
+    height="36"
+    viewBox="0 0 36 36"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.75"
+    stroke-linecap="round"
+    stroke-linejoin="round">
+    <style>
+        :root {
+            color: #171717;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                color: #ededed;
+            }
+        }
+    </style>
+    <path d="M11 2H25L34 11V25L25 34H11L2 25V11Z" />
+    <ellipse cx="18" cy="21" rx="6" ry="8" stroke-width="2.25" />
+    <path d="M11 8L12.5 10M18 6V9M25 8L23.5 10" />
+</svg>
