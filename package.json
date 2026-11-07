@@ -1,5 +1,5 @@
 {
-    "name": "@oliverperzyk/chemistry-infographic",
+    "name": "@oliverperzyk/chemistry-project",
     "description": "Website about octane rating, created as a chemistry project.",
     "version": "0.0.1",
     "private": true,
@@ -12,10 +12,10 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/oliverperzyk/chemistry-infographic.git"
+        "url": "https://github.com/oliverperzyk/chemistry-project.git"
     },
     "bugs": {
-        "url": "https://github.com/oliverperzyk/chemistry-infographic/issues"
+        "url": "https://github.com/oliverperzyk/chemistry-project/issues"
     },
     "engines": {
         "bun": ">=1.4"

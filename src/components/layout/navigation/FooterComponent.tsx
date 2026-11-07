@@ -31,8 +31,8 @@ function FooterComponent(): JSX.Element {
                             Infografika edukacyjna o liczbie oktanowej paliw. Projekt przygotowany w ramach lekcji
                             chemii.
                         </p>
-                        <a
-                            href="https://github.com/oliverperzyk/chemistry-infographic"
+                        <Link
+                            href={NavigationLinks.SOURCE_CODE_URL}
                             aria-label="Kod źródłowy na GitHub"
                             className="inline-flex size-11 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring">
                             <svg
@@ -47,7 +47,7 @@ function FooterComponent(): JSX.Element {
                                 focusable="false">
                                 <path d="M9 19c-4.3 1.3-4.3-2.5-6-3m12 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 19 4.77 5.07 5.07 0 0 0 18.91 1S17.73.65 15 2.48a13.38 13.38 0 0 0-7 0C5.27.65 4.09 1 4.09 1A5.07 5.07 0 0 0 4 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 8 18.13V22" />
                             </svg>
-                        </a>
+                        </Link>
                     </div>
                     <nav
                         aria-label="Nawigacja w stopce"

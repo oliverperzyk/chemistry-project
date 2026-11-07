@@ -28,8 +28,8 @@ LABEL org.opencontainers.image.title="chemistry-infographic" \
     org.opencontainers.image.authors="Oliwier Perzyński <olek@oliverperzyk.com>" \
     org.opencontainers.image.licenses="MIT" \
     org.opencontainers.image.url="https://chemistry.oliverperzyk.com" \
-    org.opencontainers.image.documentation="https://github.com/oliverperzyk/chemistry-infographic" \
-    org.opencontainers.image.source="https://github.com/oliverperzyk/chemistry-infographic.git"
+    org.opencontainers.image.documentation="https://github.com/oliverperzyk/chemistry-project" \
+    org.opencontainers.image.source="https://github.com/oliverperzyk/chemistry-project.git"
 
 COPY --from=builder --chown=bun:bun /app/dist/standalone ./
 COPY --from=builder --chown=bun:bun /app/scripts/Healthcheck.ts ./scripts/Healthcheck.ts

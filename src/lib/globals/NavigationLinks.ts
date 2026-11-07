@@ -18,7 +18,7 @@ class NavigationLinks {
      * @summary URL of the infographic source repository.
      * @description Shared GitHub destination used by the footer link & source code redirects.
      */
-    public static readonly SOURCE_CODE_URL: URL = new URL("https://github.com/oliverperzyk/chemistry-infographic")
+    public static readonly SOURCE_CODE_URL: URL = new URL("https://github.com/oliverperzyk/chemistry-project")
 
     /**
      * @summary Public navigation of the infographic.
